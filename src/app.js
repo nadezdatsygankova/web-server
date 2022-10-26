@@ -44,24 +44,23 @@ app.get('/about', (req, res) => {
   })
 })
 app.get('/weather', (req, res) => {
-if(!req.query.address){
+if(!req.query.q){
   return res.send({
     error: 'You must provide a weather term'
   })
 }
-
-forecast(req.query.address, (error, {body}={}) =>{
+forecast(req.query.q, (error, data) =>{
   if(error){
     return res.send({error})
   }
-  console.log(body)
    res.send({
-    address: req.query.address,
-    temperature: body.current.temperature,
-    location: body.location.name,
-    feelslike: body.current.feelslike,
-    weather_icons: body.current.weather_icons,
-    weather_descriptions: body.current.weather_descriptions
+    temperature: Math.round(data.main.temp),
+    address: data.name,
+    humidity: data.main.humidity,
+    wind:data.wind.speed,
+    description:data.weather[0].description,
+    feels_like: Math.round(data.main.feels_like),
+    weather_icons: data.weather[0].icon,
   })
 })
 })
@@ -73,7 +72,6 @@ app.get('/products', (req, res) => {
     })
   }
 
-  console.log(req.query.search)
   res.send({
     forecast: [],
   })
