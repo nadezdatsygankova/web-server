@@ -55,10 +55,12 @@ forecast(req.query.q, (error, data) =>{
   }
    res.send({
     temperature: Math.round(data.main.temp),
+    temp_min: Math.round(data.main.temp_min),
+    temp_max: Math.round(data.main.temp_max),
     address: data.name,
     humidity: data.main.humidity,
     wind:data.wind.speed,
-    description:data.weather[0].description,
+    description:data.weather[0].description.toUpperCase(),
     feels_like: Math.round(data.main.feels_like),
     weather_icons: data.weather[0].icon,
   })

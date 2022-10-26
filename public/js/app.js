@@ -20,7 +20,7 @@ weatherForm.addEventListener('submit', (e) => {
           messageOne.textContent = data.error;
         } else {
           messageOne.textContent = `City is  ${data.address}.`;
-          messageTwo.textContent = `The temperature ${data.temperature}C. Feels like : ${data.feels_like}C.`;
+          messageTwo.textContent = `The temperature ${data.temperature}°C. Feels like : ${data.feels_like}°C. Min temp: ${data.temp_min}°C. Max temp: ${data.temp_max}°C `;
           messageThree.textContent = `Humidity: ${data.humidity}%. Wind: ${data.wind} km/h. ${data.description}  `
           iconWeather.src = `http://openweathermap.org/img/w/${data.weather_icons}.png`;
         }
